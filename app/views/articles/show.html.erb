@@ -1,3 +1,18 @@
 <h1><%=@article.title%></h1>
-
 <p><%=@article.body%></p>
+<h2>Comments:</h2>
+<%@article.comments.each do |comment|%>
+  <div>
+    <p><%=comment.body%></p>
+  </div>
+<%end%>
+<h2>Add a Comment:</h2>
+<div>
+  <%=form_with model: [@article, @article.comments.build] do |form|%>
+    <%=form.label :body%>
+    <%=form.text_field :body%>
+    <%=form.submit%>
+  <%end%>
+</div>
+
+<%=link_to "Go Back", root_path%>
